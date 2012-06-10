@@ -40,4 +40,4 @@ command Wq wq
 command WQ wq
 
 " for markdown files: use 4 spaces
-Auto *.md setl shiftwidth=4 softtabstop=0
+Auto *.md setl shiftwidth=4 softtabstop=4
