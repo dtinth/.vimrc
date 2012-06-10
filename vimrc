@@ -28,7 +28,16 @@ set incsearch hlsearch smartcase
 " gui font
 set guifont=Monaco:h14 
 
-" old style
-command! Tab set shiftwidth=4 tabstop=4 softtabstop=0 noexpandtab
+" COMMAND to use old-style tab
+command Tab setl shiftwidth=4 tabstop=4 softtabstop=0 noexpandtab
 
+" COMMAND to setup autocommands
+command -nargs=* Auto au BufNewFile,BufRead <args>
 
+" COMMAND to fix typing mistakes
+command Q q
+command Wq wq
+command WQ wq
+
+" for markdown files: use 4 spaces
+Auto *.md setl shiftwidth=4 softtabstop=0
