@@ -42,3 +42,11 @@ command WQ wq
 " for markdown files: use 4 spaces
 Auto *.md setl shiftwidth=4 softtabstop=4
 Auto *.java Tab
+
+" mapping for csharp files
+Auto *.cs setl shiftwidth=4 softtabstop=4
+Auto *.cs imap <buffer> ;wl Console.WriteLine("");<left><left><left>
+Auto *.cs imap <buffer> ;w; Console.Write("");<left><left><left>
+Auto *.cs imap <buffer> ;ip int.Parse()<left>
+Auto *.cs imap <buffer> ;dp double.Parse()<left>
+Auto *.cs imap <buffer> ;rl Console.ReadLine()
