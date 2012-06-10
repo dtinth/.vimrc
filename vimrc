@@ -41,3 +41,4 @@ command WQ wq
 
 " for markdown files: use 4 spaces
 Auto *.md setl shiftwidth=4 softtabstop=4
+Auto *.java Tab
