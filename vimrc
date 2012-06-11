@@ -50,3 +50,7 @@ Auto *.cs imap <buffer> ;w; Console.Write("");<left><left><left>
 Auto *.cs imap <buffer> ;ip int.Parse()<left>
 Auto *.cs imap <buffer> ;dp double.Parse()<left>
 Auto *.cs imap <buffer> ;rl Console.ReadLine()
+
+" mapping for js files
+Auto *.js imap <buffer> ;rq ;req
+Auto *.js imap <buffer> ;req require('
