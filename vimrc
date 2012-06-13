@@ -28,6 +28,9 @@ set incsearch hlsearch smartcase
 " gui font
 set guifont=Monaco:h14 
 
+" show line number and command being entered
+set number showcmd
+
 " COMMAND to use old-style tab
 command Tab setl shiftwidth=4 tabstop=4 softtabstop=0 noexpandtab
 
@@ -54,3 +57,17 @@ Auto *.cs imap <buffer> ;rl Console.ReadLine()
 " mapping for js files
 Auto *.js imap <buffer> ;rq ;req
 Auto *.js imap <buffer> ;req require('
+
+" http://news.ycombinator.com/item?id=1484280
+" disable arrow keys
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+" line number colors
+hi LineNr  ctermfg=238  ctermbg=black  cterm=none
