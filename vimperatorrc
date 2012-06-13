@@ -3,7 +3,7 @@
 "  <F1> : show notification bar
 "  <F3> : focus search box
 
-map <F1> nop
+map <F1> <nop>
 map -urls facebook\\.com <F1> :js gBrowser.contentDocument.querySelector('#fbNotificationsJewel .jewelButton').click()<cr>
 map -urls facebook\\.com <F3> :js setTimeout(function() { ['click','focus'].forEach(function(n){gBrowser.contentDocument.querySelector('#q')[n]()}); }, 0);<cr>
 map -urls facebook\\.com l flike
