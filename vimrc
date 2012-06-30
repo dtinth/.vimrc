@@ -1,4 +1,7 @@
 
+" set leader
+let mapleader = ","
+
 " turn on syntax highlighting
 syntax on
 filetype plugin on
@@ -17,7 +20,7 @@ set backspace=indent,eol,start
 set shiftwidth=2 tabstop=8 softtabstop=2 expandtab
 
 " allow mouse usage
-set mouse=a
+" set mouse=a
 
 " other stuff
 set title nowrap completeopt=menu dir=~/.vimtmp
@@ -71,3 +74,34 @@ imap <right> <nop>
 
 " line number colors
 hi LineNr  ctermfg=238  ctermbg=black  cterm=none
+
+" funny js
+function! FunnyJS()
+  syn match Error /^\s*[(\[]/ display
+  syn match Error /;$/ display
+  setl cc=80
+endfunction
+
+" nerdtree: auto quit and auto tree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" tab remap
+function InsertTabWrapper()
+  if pumvisible()
+    return "\<c-n>"
+  endif
+  if strpart(getline('.'), 0, col('.') - 1) =~ '\w$'
+    return "\<c-n>"
+  endif
+  return "\<tab>"
+endfunction
+
+inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <S-tab> <c-p>
+
+" map leader-f to command-t
+map <leader>f <leader>t
+
+" ignore some files in command-t
+set wildignore+=*.o,*.obj,.git
+set wildignore+=node_modules

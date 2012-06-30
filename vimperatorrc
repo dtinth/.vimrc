@@ -11,5 +11,7 @@ map -urls facebook\\.com l flike
 map -urls facebook\\.com <s-c> fcomment
 map -urls facebook\\.com <s-s> fshare
 
+
+
 " smoother scrolling
 set scroll=5
