@@ -4,14 +4,45 @@ let mapleader = ","
 
 " turn on syntax highlighting
 syntax on
-filetype plugin on
+filetype plugin indent on
 
 " highlight menu colors
 hi Pmenu ctermfg=White ctermbg=DarkBlue
 hi PmenuSel ctermfg=Red ctermbg=White
 
-" cursor position, auto indent, terminal background
-set ruler autoindent background=dark
+" cursor position, terminal background
+set ruler background=dark
+
+" auto indent
+set autoindent
+function GetDtinthIndent()
+  let lnum = v:lnum
+  let prevline = getline(lnum - 1)
+  let line = getline(lnum)
+  let previndent = indent(lnum - 1)
+  let indent = previndent
+  if prevline =~ '^\s*$'
+    return indent(lnum)
+  endif
+  if prevline =~ '{$'
+    let indent += 2
+  endif
+  if line =~ '^\s*}'
+    let indent -= 2
+  endif
+  if prevline =~ '^\s*,'
+    let indent += 2
+  endif
+  if line =~ '^\s*,'
+    if prevline =~ '^\s*var\s'
+      let indent += 2
+    else
+      let indent -= 2
+    endif
+  endif
+  return indent
+endfunction
+
 
 " allow backspacing over autoindent, linebreaks and starting point
 set backspace=indent,eol,start
@@ -39,27 +70,36 @@ command Tab setl shiftwidth=4 tabstop=4 softtabstop=0 noexpandtab
 
 " COMMAND to setup autocommands
 command -nargs=* Auto au BufNewFile,BufRead <args>
+command -nargs=* AutoType au FileType <args>
 
 " COMMAND to fix typing mistakes
 command Q q
 command Wq wq
 command WQ wq
 
-" for markdown files: use 4 spaces
-Auto *.md setl shiftwidth=4 softtabstop=4
-Auto *.java Tab
+augroup dtinth
 
-" mapping for csharp files
-Auto *.cs setl shiftwidth=4 softtabstop=4
-Auto *.cs imap <buffer> ;wl Console.WriteLine("");<left><left><left>
-Auto *.cs imap <buffer> ;w; Console.Write("");<left><left><left>
-Auto *.cs imap <buffer> ;ip int.Parse()<left>
-Auto *.cs imap <buffer> ;dp double.Parse()<left>
-Auto *.cs imap <buffer> ;rl Console.ReadLine()
+  autocmd!
 
-" mapping for js files
-Auto *.js imap <buffer> ;rq ;req
-Auto *.js imap <buffer> ;req require('
+  " for markdown files: use 4 spaces
+  Auto *.md setl shiftwidth=4 softtabstop=4
+  AutoType java Tab
+
+  " mapping for csharp files
+  AutoType cs setl shiftwidth=4 softtabstop=4
+  AutoType cs imap <buffer> ;wl Console.WriteLine("");<left><left><left>
+  AutoType cs imap <buffer> ;w; Console.Write("");<left><left><left>
+  AutoType cs imap <buffer> ;ip int.Parse()<left>
+  AutoType cs imap <buffer> ;dp double.Parse()<left>
+  AutoType cs imap <buffer> ;rl Console.ReadLine()
+
+  " mapping for js files
+  AutoType javascript imap <buffer> ;rq ;req
+  AutoType javascript imap <buffer> ;req require('
+
+  AutoType javascript set indentexpr=GetDtinthIndent() indentkeys+=0\,
+
+augroup END
 
 " http://news.ycombinator.com/item?id=1484280
 " disable arrow keys
