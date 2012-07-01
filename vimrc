@@ -100,8 +100,16 @@ inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <S-tab> <c-p>
 
 " map leader-f to command-t
-map <leader>f <leader>t
+map <leader>f :CommandT<cr>
+map <leader>m :CommandT node_modules<cr>
+
+" command-t options
+let g:CommandTMatchWindowReverse=1
 
 " ignore some files in command-t
 set wildignore+=*.o,*.obj,.git
 set wildignore+=node_modules
+
+" restore cursor positions ( taken from ubuntu's vimrc )
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
