@@ -247,3 +247,6 @@ endfunction
 function! SetCustomCommand()
   let s:customcommand = input('Enter Custom Command$ ')
 endfunction
+
+hi StatusLineNC ctermfg=249 ctermbg=235 cterm=none
+hi StatusLine ctermbg=26 ctermfg=15 cterm=bold
