@@ -1,4 +1,3 @@
-
 " set leader
 let mapleader = ","
 
@@ -16,31 +15,90 @@ set ruler background=dark
 " auto indent
 set autoindent
 function GetDtinthIndent()
+
   let lnum = v:lnum
   let prevline = getline(lnum - 1)
   let line = getline(lnum)
-  let previndent = indent(lnum - 1)
-  let indent = previndent
+  let indent = indent(lnum - 1)
+
+  " don't bother re-indenting after a blank line
   if prevline =~ '^\s*$'
     return indent(lnum)
   endif
-  if prevline =~ '{$'
-    let indent += 2
-  endif
-  if line =~ '^\s*}'
-    let indent -= 2
-  endif
-  if prevline =~ '^\s*,'
-    let indent += 2
-  endif
-  if line =~ '^\s*,'
-    if prevline =~ '^\s*var\s'
-      let indent += 2
-    else
-      let indent -= 2
-    endif
-  endif
+
+  " now we check stuff
+  let openbracket = (prevline =~ '{$')
+  let prevclosebracket = (prevline =~ '^\s*}')
+  let closebracket = (line =~ '^\s*}')
+  let prevcomma = (prevline =~ '^\s*,')
+  let comma = (line =~ '^\s*,')
+  let prevvar = (prevline =~ '^\s*var\s')
+
+  if prevclosebracket
+    let open = GetOpenBracketLineNumber(lnum - 1)
+    if open > 0
+      let openline = getline(open)
+      let openindent = indent(open)
+      let opencomma = (openline =~ '^\s*,')
+      if opencomma
+        let prevcomma = opencomma
+        let indent = openindent
+      end
+    end
+  end
+
+  let invar = 0
+  if prevcomma
+    let lnum2 = lnum - 1
+    while getline(lnum2) =~ '^\s*,'
+      let lnum2 -= 1
+    endwhile
+    if lnum2 > 0 && getline(lnum2) =~ '^\s*var'
+      let invar = 1
+    end
+  end
+
+  if closebracket && openbracket && prevcomma | return indent + 2 | end
+  if closebracket && openbracket | return indent | end
+  if openbracket && prevcomma | return indent + 4 | end
+  if openbracket && !prevcomma | return indent + 2 | end
+  if closebracket && prevcomma | return indent | end
+  if closebracket && !prevcomma | return indent - 2 | end
+  if prevvar && comma | return indent + 2 | end
+  if prevcomma && !comma && invar | return indent - 2 | end
+  if prevcomma && !comma && !invar | return indent + 2 | end
+  if prevcomma && comma | return indent | end
+  if !prevcomma && comma | return indent - 2 | end
+
+
+  " if prevcomma && !openbracket | let indent -= 2 | end
+  " if prevcomma && openbracket | let indent += 2 | end
+  " if comma && (prevvar || prevcomma) | let indent += 2 | else | let indent -= 2 | end
+  " if openbracket | let indent += 2 | end
+  " if closebracket | let indent -= 2 | end
+  " if prevclosebracket && OpenBracketIsAfterAComma(lnum - 1) | let indent -= 4 | end
   return indent
+
+endfunction
+
+function GetOpenBracketLineNumber(lnum)
+  let lnum = a:lnum
+  let level = 0
+  while lnum > 0
+    let line = getline(lnum)
+    let openbracket = (line =~ '{$')
+    let closebracket = (line =~ '^\s*}')
+    if closebracket
+      let level += 1
+    elseif openbracket
+      let level -= 1
+      if level == 0
+        return lnum
+      end
+    end
+    let lnum -= 1
+  endwhile
+  return 0
 endfunction
 
 
@@ -63,7 +121,14 @@ set incsearch hlsearch smartcase
 set guifont=Monaco:h14 
 
 " show line number and command being entered
-set number showcmd
+set relativenumber showcmd
+
+" window width
+set numberwidth=5
+set winwidth=85
+set winheight=10
+set winminheight=5
+set winheight=999
 
 " COMMAND to use old-style tab
 command Tab setl shiftwidth=4 tabstop=4 softtabstop=0 noexpandtab
@@ -87,10 +152,10 @@ augroup dtinth
 
   " mapping for csharp files
   AutoType cs setl shiftwidth=4 softtabstop=4
-  AutoType cs imap <buffer> ;wl Console.WriteLine("");<left><left><left>
-  AutoType cs imap <buffer> ;w; Console.Write("");<left><left><left>
-  AutoType cs imap <buffer> ;ip int.Parse()<left>
-  AutoType cs imap <buffer> ;dp double.Parse()<left>
+  AutoType cs inoremap <buffer> ;wl Console.WriteLine("");<left><left><left>
+  AutoType cs inoremap <buffer> ;w; Console.Write("");<left><left><left>
+  AutoType cs inoremap <buffer> ;ip int.Parse()<left>
+  AutoType cs inoremap <buffer> ;dp double.Parse()<left>
   AutoType cs imap <buffer> ;rl Console.ReadLine()
 
   " mapping for js files
@@ -131,9 +196,20 @@ function InsertTabWrapper()
     return "\<c-n>"
   endif
   if strpart(getline('.'), 0, col('.') - 1) =~ '\w$'
+    if ShouldUseOmniCompletion()
+      return "\<c-x>\<c-o>"
+    endif
     return "\<c-n>"
   endif
   return "\<tab>"
+endfunction
+
+function ShouldUseOmniCompletion()
+  let text = strpart(getline('.'), 0, col('.') - 1)
+  let name = synIDattr(synID(line("."), col("."), 1), "name")
+  if text =~ '</$' | return 1 | end
+  if name =~ '^css' | return 1 | end
+  return 0
 endfunction
 
 inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
@@ -153,3 +229,21 @@ set wildignore+=node_modules
 " restore cursor positions ( taken from ubuntu's vimrc )
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+" http://jeffkreeftmeijer.com/2012/relative-line-numbers-in-vim-for-super-fast-movement/
+" relative line numbers when moving around
+au FocusLost * set number
+au FocusGained * set relativenumber
+au InsertEnter * set number
+au InsertLeave * set relativenumber
+
+" bind run command
+map <leader>r :call RunCustomCommand()<cr>
+map <leader>R :call SetCustomCommand()<cr>
+function! RunCustomCommand()
+  up
+  execute '!' . s:customcommand
+endfunction
+
+function! SetCustomCommand()
+  let s:customcommand = input('Enter Custom Command$ ')
+endfunction
