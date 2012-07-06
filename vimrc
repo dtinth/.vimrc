@@ -250,3 +250,4 @@ endfunction
 
 hi StatusLineNC ctermfg=249 ctermbg=235 cterm=none
 hi StatusLine ctermbg=26 ctermfg=15 cterm=bold
+hi VertSplit cterm=none ctermbg=26 ctermfg=117
