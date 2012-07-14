@@ -5,10 +5,6 @@ let mapleader = ","
 syntax on
 filetype plugin indent on
 
-" highlight menu colors
-hi Pmenu ctermfg=White ctermbg=DarkBlue
-hi PmenuSel ctermfg=Red ctermbg=White
-
 " cursor position, terminal background
 set ruler background=dark
 
@@ -23,6 +19,11 @@ function GetDtinthIndent()
 
   " don't bother re-indenting after a blank line
   if prevline =~ '^\s*$'
+    return indent(lnum)
+  endif
+
+  " amd define: also don't indent
+  if prevline =~ '^define('
     return indent(lnum)
   endif
 
@@ -126,9 +127,9 @@ set relativenumber showcmd
 " window width
 set numberwidth=5
 set winwidth=85
-set winheight=10
-set winminheight=5
-set winheight=999
+"set winheight=10
+"set winminheight=5
+"set winheight=999
 
 " COMMAND to use old-style tab
 command Tab setl shiftwidth=4 tabstop=4 softtabstop=0 noexpandtab
@@ -147,7 +148,7 @@ augroup dtinth
   autocmd!
 
   " for markdown files: use 4 spaces
-  Auto *.md setl shiftwidth=4 softtabstop=4
+  AutoType markdown setl shiftwidth=4 softtabstop=4
   AutoType java Tab
 
   " mapping for csharp files
@@ -161,6 +162,8 @@ augroup dtinth
   " mapping for js files
   AutoType javascript imap <buffer> ;rq ;req
   AutoType javascript imap <buffer> ;req require('
+  AutoType javascript imap <buffer> ;ds describe('<esc>mda', function() {<cr>})<esc>`da
+  AutoType javascript imap <buffer> ;it it('should <esc>mda', function() {<cr>})<esc>`da
 
   AutoType javascript set indentexpr=GetDtinthIndent() indentkeys+=0\,
 
@@ -177,8 +180,9 @@ imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
 
-" line number colors
-hi LineNr  ctermfg=238  ctermbg=black  cterm=none
+" map ctrl+s to save
+map <c-s> :up<cr>
+imap <c-s> <esc>:up<cr>
 
 " funny js
 function! FunnyJS()
@@ -248,6 +252,26 @@ function! SetCustomCommand()
   let s:customcommand = input('Enter Custom Command$ ')
 endfunction
 
-hi StatusLineNC ctermfg=249 ctermbg=235 cterm=none
-hi StatusLine ctermbg=26 ctermfg=15 cterm=bold
-hi VertSplit cterm=none ctermbg=26 ctermfg=117
+" rainbow rainbow!! 
+let s:currentcolor = 9
+function! ChangeColor()
+  let s:currentcolor += 1
+  if s:currentcolor >= 15
+    let s:currentcolor = 9
+  end
+  exe "hi Comment ctermfg=" . s:currentcolor
+endfunction
+
+" autocmd InsertEnter * call ChangeColor()
+" autocmd InsertCharPre * call ChangeColor()
+" autocmd CursorMoved * call ChangeColor()
+
+autocmd InsertEnter * noh
+
+" from garybernhardt / dotfiles
+function! MapCR()
+  nnoremap <cr> :nohlsearch<cr>
+endfunction
+call MapCR()
+autocmd! CmdwinEnter * :unmap <cr>
+autocmd! CmdwinLeave * :call MapCR()
