@@ -1,0 +1,27 @@
+
+" let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+
+" THE BEST COLOR SCHEME
+Bundle 'dtinth/vim-colors-dtinth256'
+
+" functionality
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'nathanaelkane/vim-indent-guides'
+
+" git
+Bundle 'tpope/vim-fugitive'
+
+" language support
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'juvenn/mustache.vim'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'pangloss/vim-javascript'
+Bundle 'briancollins/vim-jst'
+Bundle 'tpope/vim-rails'
+Bundle 'gfxmonk/vim-stratifiedjs'
+Bundle 'wavded/vim-stylus'
+
+

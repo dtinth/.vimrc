@@ -10,6 +10,8 @@ set ruler background=dark
 
 " auto indent
 set autoindent
+
+" my funny javascript indentation
 function GetDtinthIndent()
 
   let lnum = v:lnum
@@ -71,7 +73,6 @@ function GetDtinthIndent()
   if prevcomma && comma | return indent | end
   if !prevcomma && comma | return indent - 2 | end
 
-
   " if prevcomma && !openbracket | let indent -= 2 | end
   " if prevcomma && openbracket | let indent += 2 | end
   " if comma && (prevvar || prevcomma) | let indent += 2 | else | let indent -= 2 | end
@@ -132,7 +133,7 @@ set winwidth=85
 "set winheight=999
 
 " COMMAND to use old-style tab
-command Tab setl shiftwidth=4 tabstop=4 softtabstop=0 noexpandtab
+command Tab setl shiftwidth=4 tabstop=4 softtabstop=0 noexpandtab indentexpr=
 
 " COMMAND to setup autocommands
 command -nargs=* Auto au BufNewFile,BufRead <args>
@@ -166,6 +167,7 @@ augroup dtinth
   AutoType javascript imap <buffer> ;it it('should <esc>mda', function() {<cr>})<esc>`da
 
   AutoType javascript set indentexpr=GetDtinthIndent() indentkeys+=0\,
+  AutoType java Tab
 
 augroup END
 
@@ -194,7 +196,7 @@ endfunction
 " nerdtree: auto quit and auto tree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-" tab remap
+" remap <tab> to auto-complete
 function InsertTabWrapper()
   if pumvisible()
     return "\<c-n>"
@@ -219,16 +221,13 @@ endfunction
 inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <S-tab> <c-p>
 
-" map leader-f to command-t
-map <leader>f :CommandT<cr>
-map <leader>m :CommandT node_modules<cr>
-
-" command-t options
-let g:CommandTMatchWindowReverse=1
+" ctrl-p
+let g:ctrlp_map = '<leader>f'
 
 " ignore some files in command-t
 set wildignore+=*.o,*.obj,.git
 set wildignore+=node_modules
+set wildignore+=tmp/cache
 
 " restore cursor positions ( taken from ubuntu's vimrc )
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -243,9 +242,14 @@ au InsertLeave * set relativenumber
 " bind run command
 map <leader>r :call RunCustomCommand()<cr>
 map <leader>R :call SetCustomCommand()<cr>
+let g:silent_custom_command = 0
 function! RunCustomCommand()
   up
-  execute '!' . s:customcommand
+  if g:silent_custom_command
+    execute 'silent !' . s:customcommand
+  else
+    execute '!' . s:customcommand
+  end
 endfunction
 
 function! SetCustomCommand()
@@ -262,11 +266,11 @@ function! ChangeColor()
   exe "hi Comment ctermfg=" . s:currentcolor
 endfunction
 
-" autocmd InsertEnter * call ChangeColor()
-" autocmd InsertCharPre * call ChangeColor()
-" autocmd CursorMoved * call ChangeColor()
-
-autocmd InsertEnter * noh
+function! Rainbow()
+  autocmd InsertEnter * call ChangeColor()
+  autocmd InsertCharPre * call ChangeColor()
+  autocmd CursorMoved * call ChangeColor()
+endfunction
 
 " from garybernhardt / dotfiles
 function! MapCR()
@@ -275,3 +279,6 @@ endfunction
 call MapCR()
 autocmd! CmdwinEnter * :unmap <cr>
 autocmd! CmdwinLeave * :call MapCR()
+set t_ti= t_te=
+
+
