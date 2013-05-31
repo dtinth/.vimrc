@@ -156,19 +156,19 @@ augroup dtinth
 
   " mapping for csharp files
   AutoType cs setl shiftwidth=4 softtabstop=4
-  AutoType cs inoremap <buffer> ;wl Console.WriteLine("");<left><left><left>
-  AutoType cs inoremap <buffer> ;w; Console.Write("");<left><left><left>
-  AutoType cs inoremap <buffer> ;ip int.Parse()<left>
-  AutoType cs inoremap <buffer> ;dp double.Parse()<left>
-  AutoType cs imap <buffer> ;rl Console.ReadLine()
+  " AutoType cs inoremap <buffer> ;wl Console.WriteLine("");<left><left><left>
+  " AutoType cs inoremap <buffer> ;w; Console.Write("");<left><left><left>
+  " AutoType cs inoremap <buffer> ;ip int.Parse()<left>
+  " AutoType cs inoremap <buffer> ;dp double.Parse()<left>
+  " AutoType cs imap <buffer> ;rl Console.ReadLine()
 
   " mapping for js files
-  AutoType javascript imap <buffer> ;rq ;req
-  AutoType javascript imap <buffer> ;req require('
-  AutoType javascript imap <buffer> ;ds describe('<esc>mda', function() {<cr>})<esc>`da
-  AutoType javascript imap <buffer> ;it it('should <esc>mda', function() {<cr>})<esc>`da
+  " AutoType javascript imap <buffer> ;rq ;req
+  " AutoType javascript imap <buffer> ;req require('
+  " AutoType javascript imap <buffer> ;ds describe('<esc>mda', function() {<cr>})<esc>`da
+  " AutoType javascript imap <buffer> ;it it('should <esc>mda', function() {<cr>})<esc>`da
 
-  AutoType javascript set indentexpr=GetDtinthIndent() indentkeys+=0\,
+  " AutoType javascript set indentexpr=GetDtinthIndent() indentkeys+=0\,
   AutoType java Tab
 
 augroup END
@@ -275,5 +275,8 @@ call MapCR()
 autocmd! CmdwinEnter * :unmap <cr>
 autocmd! CmdwinLeave * :call MapCR()
 set t_ti= t_te=
+
+let g:tern_map_keys=1
+let g:EasyMotion_keys='tnseriaoplfuwydhpjcxmvkbNEIOLUYHKMTS' " colemak ftw
 
 

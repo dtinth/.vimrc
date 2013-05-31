@@ -10,6 +10,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'Lokaltog/vim-easymotion'
 
 " git
 Bundle 'tpope/vim-fugitive'
@@ -24,4 +25,9 @@ Bundle 'tpope/vim-rails'
 Bundle 'gfxmonk/vim-stratifiedjs'
 Bundle 'wavded/vim-stylus'
 
+" awesome completion
+Bundle 'git://github.com/Valloric/YouCompleteMe.git'
+Bundle 'marijnh/tern_for_vim'
 
+" awesome collaboration
+Bundle 'Floobits/floobits-vim'
