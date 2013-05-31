@@ -115,6 +115,8 @@ set shiftwidth=2 tabstop=8 softtabstop=2 expandtab
 
 " other stuff
 set title nowrap completeopt=menu dir=~/.vimtmp
+set backupcopy=yes
+set backupdir=~/.vimbackup
 
 " searching: incremental, highlight, smart case
 set incsearch hlsearch smartcase
@@ -123,7 +125,7 @@ set incsearch hlsearch smartcase
 set guifont=Monaco:h14 
 
 " show line number and command being entered
-set relativenumber showcmd
+set showcmd number
 
 " window width
 set numberwidth=5
@@ -231,13 +233,6 @@ set wildignore+=tmp/cache
 
 " restore cursor positions ( taken from ubuntu's vimrc )
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-" http://jeffkreeftmeijer.com/2012/relative-line-numbers-in-vim-for-super-fast-movement/
-" relative line numbers when moving around
-au FocusLost * set number
-au FocusGained * set relativenumber
-au InsertEnter * set number
-au InsertLeave * set relativenumber
 
 " bind run command
 map <leader>r :call RunCustomCommand()<cr>
