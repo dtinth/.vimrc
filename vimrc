@@ -11,6 +11,9 @@ set ruler background=dark
 " auto indent
 set autoindent
 
+" scroll speed
+set scroll=8
+
 " my funny javascript indentation
 function GetDtinthIndent()
 
@@ -187,6 +190,10 @@ imap <right> <nop>
 " map ctrl+s to save
 map <c-s> :up<cr>
 imap <c-s> <esc>:up<cr>
+
+" map for easymotion
+map <leader>m <leader><leader>F
+map <leader>. <leader><leader>f
 
 " funny js
 function! FunnyJS()
