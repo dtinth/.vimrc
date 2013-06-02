@@ -131,8 +131,6 @@ set guifont=Monaco:h14
 set showcmd number
 
 " window width
-set numberwidth=5
-set winwidth=85
 "set winheight=10
 "set winminheight=5
 "set winheight=999
