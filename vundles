@@ -13,6 +13,7 @@ Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'justincampbell/vim-eighties'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'goldfeld/vim-seek'
 
 " git
 Bundle 'tpope/vim-fugitive'
