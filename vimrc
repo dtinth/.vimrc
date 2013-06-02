@@ -282,6 +282,6 @@ autocmd! CmdwinLeave * :call MapCR()
 set t_ti= t_te=
 
 let g:tern_map_keys=1
-let g:EasyMotion_keys='tnseriaoplfuwydhpjcxmvkbNEIOLUYHKMTS' " colemak ftw
+let g:EasyMotion_keys='tnseriaoplfuwydhjcxmvkbNEIOLUYHKMTSCV' " colemak ftw
 
 
