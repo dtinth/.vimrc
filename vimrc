@@ -1,5 +1,5 @@
 " set leader
-let mapleader = ","
+let mapleader = " "
 
 " turn on syntax highlighting
 syntax on
@@ -190,8 +190,8 @@ map <c-s> :up<cr>
 imap <c-s> <esc>:up<cr>
 
 " map for easymotion
-map <leader>m <leader><leader>F
-map <leader>. <leader><leader>f
+map <leader>a <leader><leader>F
+map <leader>o <leader><leader>f
 
 " funny js
 function! FunnyJS()
@@ -241,7 +241,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 " bind run command
 map <leader>r :call RunCustomCommand()<cr>
-map <leader>R :call SetCustomCommand()<cr>
+map <leader>s :call SetCustomCommand()<cr>
 let g:silent_custom_command = 0
 function! RunCustomCommand()
   up
