@@ -28,7 +28,7 @@ Bundle 'tpope/vim-rails'
 Bundle 'gfxmonk/vim-stratifiedjs'
 Bundle 'wavded/vim-stylus'
 
-" awesome completion
+" now you complete me
 Bundle 'git://github.com/Valloric/YouCompleteMe.git'
 Bundle 'marijnh/tern_for_vim'
 
