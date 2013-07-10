@@ -3,7 +3,7 @@ let mapleader = " "
 
 " turn on syntax highlighting
 syntax on
-filetype plugin indent on
+filetype plugin on
 
 " cursor position, terminal background
 set ruler background=dark
@@ -193,6 +193,24 @@ imap <c-s> <esc>:up<cr>
 map <leader>a <leader><leader>F
 map <leader>o <leader><leader>f
 
+" map <leader>_ to select stuff
+map <leader>w viw
+map <leader>[ vi[
+map <leader>] vi]
+map <leader>{ vi{
+map <leader>} vi}
+map <leader>( vi(
+map <leader>) vi)
+map <leader>< vi<
+map <leader>> vi>
+map <leader>t vit
+map <leader>b vib
+map <leader>" vi"
+map <leader>' vi'
+map <leader>j 12j
+map <leader>k 12k
+
+
 " funny js
 function! FunnyJS()
   syn match Error /^\s*[(\[]/ display
@@ -283,5 +301,9 @@ set t_ti= t_te=
 
 let g:tern_map_keys=1
 let g:EasyMotion_keys='tnseriaoplfuwydhjcxmvkbNEIOLUYHKMTSCV' " colemak ftw
+let g:EclimCompletionMethod='omnifunc' " for eclim to work with YouCompleteMe
+let g:EclimJavascriptLintEnabled=0
+let g:EclimJavascriptValidate=0
 
+let g:syntastic_html_checkers=[] " syntastic, don't complain about my awesome angular html6
 

@@ -27,14 +27,17 @@ Bundle 'briancollins/vim-jst'
 Bundle 'tpope/vim-rails'
 Bundle 'gfxmonk/vim-stratifiedjs'
 Bundle 'wavded/vim-stylus'
+Bundle 'gkz/vim-ls'
 
 " now you complete me
 Bundle 'git://github.com/Valloric/YouCompleteMe.git'
-Bundle 'marijnh/tern_for_vim'
+" Bundle 'marijnh/tern_for_vim' " not stable enough ...
 
 " awesome collaboration
 Bundle 'Floobits/floobits-vim'
 
 " hard mode
 " Bundle 'wikitopian/hardmode'
-Bundle 'kbarrette/mediummode'
+" Bundle 'kbarrette/mediummode'
+" Only reset message when motion limit is reached 
+Bundle 'mandre/mediummode'
