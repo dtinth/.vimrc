@@ -8,6 +8,9 @@ filetype plugin on
 " cursor position, terminal background
 set ruler background=dark
 
+" color column 80
+set cc=80
+
 " auto indent
 set autoindent
 
@@ -215,7 +218,6 @@ map <leader>k 12k
 function! FunnyJS()
   syn match Error /^\s*[(\[]/ display
   syn match Error /;$/ display
-  setl cc=80
 endfunction
 
 " nerdtree: auto quit and auto tree
