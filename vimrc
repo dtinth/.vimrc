@@ -340,7 +340,7 @@ endfunction
 autocmd VimEnter * call SetupChord()
 let g:arpeggio_timeoutlen=16
 
-inoremap <C-c> <nop>
+inoremap <C-c> <Esc>
 
 
 
