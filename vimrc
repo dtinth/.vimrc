@@ -309,3 +309,38 @@ let g:EclimJavascriptValidate=0
 
 let g:syntastic_html_checkers=[] " syntastic, don't complain about my awesome angular html6
 
+function! SetupChord()
+  Arpeggio inoremap fun function
+  Arpeggio inoremap end end
+  Arpeggio inoremap the the
+  Arpeggio inoremap def def<CR>end<Up><Esc>A<Space>
+  Arpeggio inoremap cla class<CR>end<Up><Esc>A<Space>
+  Arpeggio inoremap {} {<CR>}<Esc>O<Tab>
+  Arpeggio inoremap () () {<CR>}<Esc>O<Tab>
+  Arpeggio inoremap con console.log()<Left>
+  Arpeggio inoremap doe do<CR>end<Esc>O<Tab>
+  Arpeggio inoremap thi this.
+  Arpeggio inoremap req require('')<Left><Left>
+  Arpeggio inoremap var var<Space>
+  Arpeggio inoremap doc document.
+  Arpeggio inoremap win window.
+  Arpeggio inoremap pro .prototype.
+  Arpeggio inoremap ary Array
+  Arpeggio inoremap obj Object
+  Arpeggio inoremap ret return<Space>
+  Arpeggio inoremap le .length
+  Arpeggio inoremap arg arguments
+  Arpeggio inoremap ;f ;(function() {<Cr>})()<Esc>O<Tab>
+  Arpeggio inoremap 9f (function)<Left>
+  Arpeggio inoremap ar <C-w>
+  Arpeggio inoremap io <C-w>
+  Arpeggio inoremap stne <Esc>
+endfunction
+
+autocmd VimEnter * call SetupChord()
+let g:arpeggio_timeoutlen=16
+
+inoremap <C-c> <nop>
+
+
+

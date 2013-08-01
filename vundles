@@ -41,3 +41,9 @@ Bundle 'Floobits/floobits-vim'
 " Bundle 'kbarrette/mediummode'
 " Only reset message when motion limit is reached 
 Bundle 'mandre/mediummode'
+
+" for proofreading and spellchecking
+Bundle 'LanguageTool'
+
+" chording
+Bundle 'kana/vim-arpeggio'
