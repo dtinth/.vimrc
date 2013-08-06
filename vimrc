@@ -212,6 +212,8 @@ map <leader>" vi"
 map <leader>' vi'
 map <leader>j 12j
 map <leader>k 12k
+map <leader>p "+p
+inoremap <c-v> <c-o>"+p
 
 
 " funny js
@@ -316,10 +318,11 @@ function! SetupChord()
   Arpeggio inoremap def def<CR>end<Up><Esc>A<Space>
   Arpeggio inoremap cla class<CR>end<Up><Esc>A<Space>
   Arpeggio inoremap {} {<CR>}<Esc>O<Tab>
-  Arpeggio inoremap () () {<CR>}<Esc>O<Tab>
-  Arpeggio inoremap con console.log()<Left>
+  Arpeggio inoremap () ()<Left>
+  Arpeggio inoremap con console.log
   Arpeggio inoremap doe do<CR>end<Esc>O<Tab>
-  Arpeggio inoremap thi this.
+  Arpeggio inoremap thi this
+  Arpeggio inoremap ten .then
   Arpeggio inoremap req require('')<Left><Left>
   Arpeggio inoremap var var<Space>
   Arpeggio inoremap doc document.
@@ -331,16 +334,20 @@ function! SetupChord()
   Arpeggio inoremap le .length
   Arpeggio inoremap arg arguments
   Arpeggio inoremap ;f ;(function() {<Cr>})()<Esc>O<Tab>
-  Arpeggio inoremap 9f (function)<Left>
-  Arpeggio inoremap ar <C-w>
-  Arpeggio inoremap io <C-w>
-  Arpeggio inoremap stne <Esc>
+  Arpeggio inoremap rs <C-w>
+  Arpeggio inoremap ei <C-w>
+  Arpeggio nnoremap rst ciw
+  Arpeggio nnoremap nei ciw
+  Arpeggio nnoremap stn ci'
+  Arpeggio nnoremap tne ci"
+  Arpeggio inoremap rea fs.readFile
+  Arpeggio inoremap jsp JSON.parse
+  Arpeggio inoremap jst JSON.stringify
 endfunction
 
 autocmd VimEnter * call SetupChord()
-let g:arpeggio_timeoutlen=16
+let g:arpeggio_timeoutlen=30
 
 inoremap <C-c> <Esc>
-
 
 
