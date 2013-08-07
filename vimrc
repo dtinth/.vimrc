@@ -20,107 +20,11 @@ set autoindent
 " scroll speed
 set scroll=8
 
-" my funny javascript indentation
-function GetDtinthIndent()
-
-  let lnum = v:lnum
-  let prevline = getline(lnum - 1)
-  let line = getline(lnum)
-  let indent = indent(lnum - 1)
-
-  " don't bother re-indenting after a blank line
-  if prevline =~ '^\s*$'
-    return indent(lnum)
-  endif
-
-  " amd define: also don't indent
-  if prevline =~ '^define('
-    return indent(lnum)
-  endif
-
-  " now we check stuff
-  let openbracket = (prevline =~ '{$')
-  let prevclosebracket = (prevline =~ '^\s*}')
-  let closebracket = (line =~ '^\s*}')
-  let prevcomma = (prevline =~ '^\s*,')
-  let comma = (line =~ '^\s*,')
-  let prevvar = (prevline =~ '^\s*var\s')
-
-  if prevclosebracket
-    let open = GetOpenBracketLineNumber(lnum - 1)
-    if open > 0
-      let openline = getline(open)
-      let openindent = indent(open)
-      let opencomma = (openline =~ '^\s*,')
-      if opencomma
-        let prevcomma = opencomma
-        let indent = openindent
-      end
-    end
-  end
-
-  let invar = 0
-  if prevcomma
-    let lnum2 = lnum - 1
-    while getline(lnum2) =~ '^\s*,'
-      let lnum2 -= 1
-    endwhile
-    if lnum2 > 0 && getline(lnum2) =~ '^\s*var'
-      let invar = 1
-    end
-  end
-
-  if closebracket && openbracket && prevcomma | return indent + 2 | end
-  if closebracket && openbracket | return indent | end
-  if openbracket && prevcomma | return indent + 4 | end
-  if openbracket && !prevcomma | return indent + 2 | end
-  if closebracket && prevcomma | return indent | end
-  if closebracket && !prevcomma | return indent - 2 | end
-  if prevvar && comma | return indent + 2 | end
-  if prevcomma && !comma && invar | return indent - 2 | end
-  if prevcomma && !comma && !invar | return indent + 2 | end
-  if prevcomma && comma | return indent | end
-  if !prevcomma && comma | return indent - 2 | end
-
-  " if prevcomma && !openbracket | let indent -= 2 | end
-  " if prevcomma && openbracket | let indent += 2 | end
-  " if comma && (prevvar || prevcomma) | let indent += 2 | else | let indent -= 2 | end
-  " if openbracket | let indent += 2 | end
-  " if closebracket | let indent -= 2 | end
-  " if prevclosebracket && OpenBracketIsAfterAComma(lnum - 1) | let indent -= 4 | end
-  return indent
-
-endfunction
-
-function GetOpenBracketLineNumber(lnum)
-  let lnum = a:lnum
-  let level = 0
-  while lnum > 0
-    let line = getline(lnum)
-    let openbracket = (line =~ '{$')
-    let closebracket = (line =~ '^\s*}')
-    if closebracket
-      let level += 1
-    elseif openbracket
-      let level -= 1
-      if level == 0
-        return lnum
-      end
-    end
-    let lnum -= 1
-  endwhile
-  return 0
-endfunction
-
-
 " allow backspacing over autoindent, linebreaks and starting point
 set backspace=indent,eol,start
 
 " set tab stops
 set shiftwidth=2 tabstop=8 softtabstop=2 expandtab
-
-" allow mouse usage
-" set mouse=a
 
 " other stuff
 set title nowrap completeopt=menu dir=~/.vimtmp
@@ -136,11 +40,6 @@ set guifont=Monaco:h14
 " show line number and command being entered
 set showcmd number
 
-" window width
-"set winheight=10
-"set winminheight=5
-"set winheight=999
-
 " COMMAND to use old-style tab
 command Tab setl shiftwidth=4 tabstop=4 softtabstop=0 noexpandtab indentexpr=
 
@@ -153,112 +52,18 @@ command Q q
 command Wq wq
 command WQ wq
 
-augroup dtinth
-
-  autocmd!
-
-  " for markdown files: use 4 spaces
-  AutoType markdown setl shiftwidth=4 softtabstop=4
-  AutoType java Tab
-
-  " mapping for csharp files
-  AutoType cs setl shiftwidth=4 softtabstop=4
-  " AutoType cs inoremap <buffer> ;wl Console.WriteLine("");<left><left><left>
-  " AutoType cs inoremap <buffer> ;w; Console.Write("");<left><left><left>
-  " AutoType cs inoremap <buffer> ;ip int.Parse()<left>
-  " AutoType cs inoremap <buffer> ;dp double.Parse()<left>
-  " AutoType cs imap <buffer> ;rl Console.ReadLine()
-
-  " mapping for js files
-  " AutoType javascript imap <buffer> ;rq ;req
-  " AutoType javascript imap <buffer> ;req require('
-  " AutoType javascript imap <buffer> ;ds describe('<esc>mda', function() {<cr>})<esc>`da
-  " AutoType javascript imap <buffer> ;it it('should <esc>mda', function() {<cr>})<esc>`da
-
-  " AutoType javascript set indentexpr=GetDtinthIndent() indentkeys+=0\,
-  AutoType java Tab
-
-augroup END
-
-" http://news.ycombinator.com/item?id=1484280
-" disable arrow keys
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
-
-" map ctrl+s to save
-map <c-s> :up<cr>
-imap <c-s> <esc>:up<cr>
-
-" map for easymotion
-map <leader>a <leader><leader>F
-map <leader>o <leader><leader>f
-
-" map <leader>_ to select stuff
-map <leader>w viw
-map <leader>[ vi[
-map <leader>] vi]
-map <leader>{ vi{
-map <leader>} vi}
-map <leader>( vi(
-map <leader>) vi)
-map <leader>< vi<
-map <leader>> vi>
-map <leader>t vit
-map <leader>b vib
-map <leader>" vi"
-map <leader>' vi'
-map <leader>j 12j
-map <leader>k 12k
-map <leader>p "+p
-
-exe 'inoremap <script> <C-V> <C-G>u' . paste#paste_cmd['i']
-exe 'vnoremap <script> <C-V> ' . paste#paste_cmd['v']
-
-
-" funny js
-function! FunnyJS()
-  syn match Error /^\s*[(\[]/ display
-  syn match Error /;$/ display
-endfunction
-
 " nerdtree: auto quit and auto tree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-" remap <tab> to auto-complete
-function InsertTabWrapper()
-  if pumvisible()
-    return "\<c-n>"
-  endif
-  if strpart(getline('.'), 0, col('.') - 1) =~ '\w$'
-    if ShouldUseOmniCompletion()
-      return "\<c-x>\<c-o>"
-    endif
-    return "\<c-n>"
-  endif
-  return "\<tab>"
-endfunction
+" source stuff
+exe "source " . s:dirname . "/disable_arrow_keys.vim"
+exe "source " . s:dirname . "/keys.vim"
+exe "source " . s:dirname . "/file_types.vim"
+exe "source " . s:dirname . "/custom_command.vim"
+exe "source " . s:dirname . "/chords.vim"
+exe "source " . s:dirname . "/tab_autocomplete.vim"
 
-function ShouldUseOmniCompletion()
-  let text = strpart(getline('.'), 0, col('.') - 1)
-  let name = synIDattr(synID(line("."), col("."), 1), "name")
-  if text =~ '</$' | return 1 | end
-  if name =~ '^css' | return 1 | end
-  return 0
-endfunction
-
-inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <S-tab> <c-p>
-
-" ctrl-p
-let g:ctrlp_map = '<leader>f'
-
-" ignore some files in command-t
+" files to ignore in CtrlP
 set wildignore+=*.o,*.obj,.git
 set wildignore+=node_modules
 set wildignore+=tmp/cache
@@ -266,48 +71,14 @@ set wildignore+=tmp/cache
 " restore cursor positions ( taken from ubuntu's vimrc )
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-" bind run command
-map <leader>r :call RunCustomCommand()<cr>
-map <leader>s :call SetCustomCommand()<cr>
-let g:silent_custom_command = 0
-function! RunCustomCommand()
-  up
-  if g:silent_custom_command
-    execute 'silent !' . s:customcommand
-  else
-    execute '!' . s:customcommand
-  end
-endfunction
-
-function! SetCustomCommand()
-  let s:customcommand = input('Enter Custom Command$ ')
-endfunction
-
-" from garybernhardt / dotfiles
-function! MapCR()
-  nnoremap <cr> :nohlsearch<cr>
-endfunction
-call MapCR()
-
-autocmd! CmdwinEnter * :unmap <cr>
-autocmd! CmdwinLeave * :call MapCR()
+" terminal capibilities
 set t_ti= t_te=
 
-let g:tern_map_keys=1
 let g:EasyMotion_keys='tnseriaoplfuwydhjcxmvkbNEIOLUYHKMTSCV' " colemak ftw
 let g:EclimCompletionMethod='omnifunc' " for eclim to work with YouCompleteMe
 let g:EclimJavascriptLintEnabled=0
 let g:EclimJavascriptValidate=0
-
 let g:syntastic_html_checkers=[] " syntastic, don't complain about my awesome angular html6
 
-function! SetupChord()
-  exe "source " . s:dirname . "/chords.vim"
-endfunction
-
-autocmd VimEnter * call SetupChord()
-let g:arpeggio_timeoutlen=30
-
-inoremap <C-c> <Esc>
 
 
