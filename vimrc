@@ -1,9 +1,6 @@
 " get directory
 let s:dirname = expand("<sfile>:p:h")
 
-" set leader
-let mapleader = " "
-
 " turn on syntax highlighting
 syntax on
 filetype plugin on

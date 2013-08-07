@@ -1,4 +1,7 @@
 
+" space is the leader
+let mapleader = " "
+
 " ctrl+s: save
 map <c-s> :up<cr>
 imap <c-s> <esc>:up<cr>
