@@ -213,7 +213,9 @@ map <leader>' vi'
 map <leader>j 12j
 map <leader>k 12k
 map <leader>p "+p
-inoremap <c-v> <c-o>"+p
+
+exe 'inoremap <script> <C-V> <C-G>u' . paste#paste_cmd['i']
+exe 'vnoremap <script> <C-V> ' . paste#paste_cmd['v']
 
 
 " funny js
@@ -313,6 +315,7 @@ let g:syntastic_html_checkers=[] " syntastic, don't complain about my awesome an
 
 function! SetupChord()
   Arpeggio inoremap fun function
+  Arpeggio inoremap FUN Function
   Arpeggio inoremap end end
   Arpeggio inoremap the the
   Arpeggio inoremap def def<CR>end<Up><Esc>A<Space>
@@ -343,6 +346,7 @@ function! SetupChord()
   Arpeggio inoremap rea fs.readFile
   Arpeggio inoremap jsp JSON.parse
   Arpeggio inoremap jst JSON.stringify
+  Arpeggio inoremap bin .bind
 endfunction
 
 autocmd VimEnter * call SetupChord()
