@@ -1,14 +1,11 @@
 
-let g:silent_custom_command = 0
 function! custom_command#run()
   up
-  if g:silent_custom_command
-    execute 'silent !' . g:custom_command
-  else
-    execute '!' . g:custom_command
-  end
+  execute g:custom_command
 endfunction
 
 function! custom_command#set()
+  echohl Question
   let g:custom_command = input('Enter Custom Command$ ')
+  echohl None
 endfunction

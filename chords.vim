@@ -6,8 +6,10 @@ function! Chords#setup()
   Arpeggio inoremap FUN Function
   Arpeggio inoremap end end
   Arpeggio inoremap the the
-  Arpeggio inoremap def def<CR>end<Up><Esc>A<Space>
-  Arpeggio inoremap cla class<CR>end<Up><Esc>A<Space>
+  Arpeggio inoremap def def
+  Arpeggio inoremap amd define(function(require) {<CR>})<Esc>O<Tab>
+  Arpeggio inoremap des return function(desire) {<Cr>}<Esc>O<Tab>
+  Arpeggio inoremap cla class
   Arpeggio inoremap {} {<CR>}<Esc>O<Tab>
   Arpeggio inoremap () ()<Left>
   Arpeggio inoremap con console.log
@@ -36,6 +38,20 @@ function! Chords#setup()
   Arpeggio inoremap jst JSON.stringify
   Arpeggio inoremap bin .bind
   Arpeggio inoremap thr throw new Error()<left>
+  Arpeggio inoremap tru true
+  Arpeggio inoremap fal false
+  Arpeggio inoremap syo System.out.println();<left><left>
+  Arpeggio inoremap prf System.out.printf();<left><left>
+  Arpeggio inoremap bol boolean<space>
+  Arpeggio inoremap int int<space>
+  Arpeggio inoremap dou dou<space>
+  Arpeggio inoremap mat Math
+  Arpeggio inoremap mex module.exports
+  Arpeggio inoremap exo exports
+  Arpeggio imap pl <C-Y>,
+
+  Arpeggio nnoremap ex ZZ
+  Arpeggio nnoremap qu ZQ
 endfunction
 
 autocmd VimEnter * call Chords#setup()

@@ -14,9 +14,11 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'justincampbell/vim-eighties'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-surround'
-
-" git
-Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-repeat'
+Bundle 'ervandew/supertab'
+Bundle 'junegunn/vim-emoji'
+Bundle 'editorconfig/editorconfig-vim'
+Bundle 'mattn/emmet-vim'
 
 " language support
 Bundle 'moll/vim-node'
@@ -29,19 +31,19 @@ Bundle 'tpope/vim-rails'
 Bundle 'gfxmonk/vim-stratifiedjs'
 Bundle 'wavded/vim-stylus'
 Bundle 'gkz/vim-ls'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'groenewege/vim-less'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'xsbeats/vim-blade'
+Bundle 'marijnh/tern_for_vim'
 
-" now you complete me
-Bundle 'git://github.com/Valloric/YouCompleteMe.git'
-" Bundle 'marijnh/tern_for_vim' " not stable enough ...
+" text objects
+Bundle 'kana/vim-textobj-user'
+Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'kana/vim-textobj-indent'
 
 " awesome collaboration
 Bundle 'Floobits/floobits-vim'
-
-" hard mode
-" Bundle 'wikitopian/hardmode'
-" Bundle 'kbarrette/mediummode'
-" Only reset message when motion limit is reached 
-Bundle 'mandre/mediummode'
 
 " for proofreading and spellchecking
 Bundle 'LanguageTool'

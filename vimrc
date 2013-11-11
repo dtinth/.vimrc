@@ -29,7 +29,7 @@ set backupcopy=yes
 set backupdir=~/.vimbackup
 
 " searching: incremental, highlight, smart case
-set incsearch hlsearch smartcase
+set incsearch hlsearch ignorecase smartcase
 
 " gui font
 set guifont=Monaco:h14 
@@ -58,7 +58,7 @@ exe "source " . s:dirname . "/keys.vim"
 exe "source " . s:dirname . "/file_types.vim"
 exe "source " . s:dirname . "/custom_command.vim"
 exe "source " . s:dirname . "/chords.vim"
-exe "source " . s:dirname . "/tab_autocomplete.vim"
+" exe "source " . s:dirname . "/tab_autocomplete.vim"
 
 " files to ignore in CtrlP
 set wildignore+=*.o,*.obj,.git
@@ -76,6 +76,5 @@ let g:EclimCompletionMethod='omnifunc' " for eclim to work with YouCompleteMe
 let g:EclimJavascriptLintEnabled=0
 let g:EclimJavascriptValidate=0
 let g:syntastic_html_checkers=[] " syntastic, don't complain about my awesome angular html6
-
 
 

@@ -12,7 +12,13 @@ map <leader>o <leader><leader>f
 
 " custom commands
 map <leader>r :call custom_command#run()<cr>
-map <leader>s :call custom_command#set()<cr>
+map <leader>s :call custom_command#set()<cr>!
+map <leader>S :call custom_command#set()<cr>
+map <leader>n :call custom_command#set()<cr>!node %
+map <leader>b :call custom_command#set()<cr>!ruby %
+
+" inspect syntax
+map <leader>i :echo synIDattr(synID(line("."), col("."), 1), "name")<cr>
 
 " ctrl+p
 let g:ctrlp_map = '<leader>f'
