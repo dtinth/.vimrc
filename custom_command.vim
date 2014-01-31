@@ -1,4 +1,6 @@
 
+let g:custom_command='!~/Codejom/_agaru/run %'
+
 function! custom_command#run()
   up
   execute g:custom_command

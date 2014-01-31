@@ -12,13 +12,15 @@ map <leader>o <leader><leader>f
 
 " custom commands
 map <leader>r :call custom_command#run()<cr>
-map <leader>s :call custom_command#set()<cr>!
-map <leader>S :call custom_command#set()<cr>
+map <leader>S :call custom_command#set()<cr>!
+map <leader>i :!curl http://localhost:10101/codejom/copy -d _=_<cr><cr>
+" map <leader>s :call custom_command#set()<cr>!
+" map <leader>S :call custom_command#set()<cr>
 map <leader>n :call custom_command#set()<cr>!node %
 map <leader>b :call custom_command#set()<cr>!ruby %
 
 " inspect syntax
-map <leader>i :echo synIDattr(synID(line("."), col("."), 1), "name")<cr>
+" map <leader>i :echo synIDattr(synID(line("."), col("."), 1), "name")<cr>
 
 " ctrl+p
 let g:ctrlp_map = '<leader>f'
@@ -29,6 +31,8 @@ exe 'vnoremap <script> <C-V> ' . paste#paste_cmd['v']
 
 " ctrl+c: esc
 inoremap <C-c> <Esc>
+inoremap <C-f> <C-x><C-f>
+inoremap <C-l> <C-x><C-l>
 
 " enter: clear highlight
 " from garybernhardt / dotfiles

@@ -19,6 +19,7 @@ Bundle 'ervandew/supertab'
 Bundle 'junegunn/vim-emoji'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'mattn/emmet-vim'
+Bundle 'tpope/vim-vinegar'
 
 " language support
 Bundle 'moll/vim-node'
