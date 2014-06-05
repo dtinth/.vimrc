@@ -90,7 +90,7 @@ endfunction
 function! chords#setup()
   call chords#common()
   call chords#ruby()
-  call Chords#javascript()
+  call chords#javascript()
   Arpeggio nnoremap ex ZZ
   Arpeggio nnoremap qu ZQ
   Arpeggio inoremap kuc 口
