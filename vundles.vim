@@ -19,7 +19,7 @@ Bundle 'ervandew/supertab'
 Bundle 'junegunn/vim-emoji'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'mattn/emmet-vim'
-Bundle 'tpope/vim-vinegar'
+Bundle 'dhruvasagar/vim-vinegar'
 
 " language support
 Bundle 'moll/vim-node'
@@ -42,9 +42,6 @@ Bundle 'marijnh/tern_for_vim'
 Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'kana/vim-textobj-indent'
-
-" awesome collaboration
-Bundle 'Floobits/floobits-vim'
 
 " for proofreading and spellchecking
 Bundle 'LanguageTool'

@@ -1,7 +1,7 @@
 
 " chord files for vim-arpeggio
 
-function! Chords#javascript()
+function! chords#javascript()
   Arpeggio inoremap fun function
   Arpeggio inoremap FUN Function
   Arpeggio inoremap amd define(function(require) {<CR>})<Esc>O<Tab>
@@ -29,7 +29,7 @@ function! Chords#javascript()
   Arpeggio inoremap exo exports
 endfunction
 
-function! Chords#common()
+function! chords#common()
   Arpeggio inoremap the the
   Arpeggio inoremap () ()<Left>
   Arpeggio inoremap {} {<CR>}<Esc>O<Tab>
@@ -45,7 +45,7 @@ function! Chords#common()
   Arpeggio inoremap ret return<Space>
 endfunction
 
-function! Chords#smart_dot()
+function! chords#smart_dot()
   if getline(".")[col(".") - 2] == "."
     return ""
   else
@@ -53,7 +53,7 @@ function! Chords#smart_dot()
   endif
 endfunction
 
-function! Chords#smart_space()
+function! chords#smart_space()
   if col(".") == 1 || getline(".")[col(".") - 2] == " "
     return ""
   else
@@ -61,40 +61,40 @@ function! Chords#smart_space()
   endif
 endfunction
 
-function! Chords#ruby()
+function! chords#ruby()
   Arpeggio inoremap end end
   Arpeggio inoremap ints ints
   Arpeggio inoremap uts puts<Space>
   Arpeggio inoremap xv, cases do<CR>end<Esc>O<Tab>
-  Arpeggio inoremap xvm <C-R>=Chords#smart_dot()<CR>each
+  Arpeggio inoremap xvm <C-R>=chords#smart_dot()<CR>each
   Arpeggio inoremap xv. loop do<CR>end<Esc>O<Tab>
-  Arpeggio inoremap xcm <C-R>=Chords#smart_dot()<CR>to_i
-  Arpeggio inoremap xc, <C-R>=Chords#smart_dot()<CR>to_s
-  Arpeggio inoremap xc. <C-R>=Chords#smart_dot()<CR>to_a
-  Arpeggio inoremap map <C-R>=Chords#smart_dot()<CR>map {  }<Left><Left>
-  Arpeggio inoremap mai <C-R>=Chords#smart_dot()<CR>map(&:to_i)
-  Arpeggio inoremap sel <C-R>=Chords#smart_dot()<CR>select {  }<Left><Left>
-  Arpeggio inoremap red <C-R>=Chords#smart_dot()<CR>reduce {  }<Left><Left>
-  Arpeggio inoremap tim <C-R>=Chords#smart_dot()<CR>times
-  Arpeggio inoremap sip <C-R>=Chords#smart_dot()<CR>strip
-  Arpeggio inoremap ary <C-R>=Chords#smart_dot()<CR>array
+  Arpeggio inoremap xcm <C-R>=chords#smart_dot()<CR>to_i
+  Arpeggio inoremap xc, <C-R>=chords#smart_dot()<CR>to_s
+  Arpeggio inoremap xc. <C-R>=chords#smart_dot()<CR>to_a
+  Arpeggio inoremap map <C-R>=chords#smart_dot()<CR>map {  }<Left><Left>
+  Arpeggio inoremap mai <C-R>=chords#smart_dot()<CR>map(&:to_i)
+  Arpeggio inoremap sel <C-R>=chords#smart_dot()<CR>select {  }<Left><Left>
+  Arpeggio inoremap red <C-R>=chords#smart_dot()<CR>reduce {  }<Left><Left>
+  Arpeggio inoremap tim <C-R>=chords#smart_dot()<CR>times
+  Arpeggio inoremap sip <C-R>=chords#smart_dot()<CR>strip
+  Arpeggio inoremap ary <C-R>=chords#smart_dot()<CR>array
   Arpeggio inoremap req require ''<Left>
   Arpeggio inoremap whi while<CR>end<Esc>kA<Space>
   Arpeggio inoremap def def<CR>end<Esc>kA<Space>
   " Arpeggio inoremap cla class
-  Arpeggio inoremap doe <C-R>=Chords#smart_space()<CR>do<CR>end<Esc>O<Tab>
+  Arpeggio inoremap doe <C-R>=chords#smart_space()<CR>do<CR>end<Esc>O<Tab>
   Arpeggio inoremap ges gets
   Arpeggio inoremap els else
 endfunction
 
-function! Chords#setup()
-  call Chords#common()
-  call Chords#ruby()
+function! chords#setup()
+  call chords#common()
+  call chords#ruby()
   Arpeggio nnoremap ex ZZ
   Arpeggio nnoremap qu ZQ
 endfunction
 
-autocmd VimEnter * call Chords#setup()
+autocmd VimEnter * call chords#setup()
 let g:arpeggio_timeoutlen=30
 
 
