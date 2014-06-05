@@ -13,11 +13,16 @@ map <leader>o <leader><leader>f
 " custom commands
 map <leader>r :call custom_command#run()<cr>
 map <leader>S :call custom_command#set()<cr>!
-map <leader>i :!curl http://localhost:10101/codejom/copy -d _=_<cr><cr>
+map <esc>r <leader>r
+imap <esc>r <c-o><leader>r
+" map <leader>i :!curl http://localhost:10101/codejom/copy -d _=_<cr><cr>
 " map <leader>s :call custom_command#set()<cr>!
 " map <leader>S :call custom_command#set()<cr>
 map <leader>n :call custom_command#set()<cr>!node %
 map <leader>b :call custom_command#set()<cr>!ruby %
+
+" reveal in finder
+map <leader>e :Reveal<cr>
 
 " inspect syntax
 " map <leader>i :echo synIDattr(synID(line("."), col("."), 1), "name")<cr>
@@ -45,5 +50,7 @@ autocmd! CmdwinEnter * :unmap <cr>
 autocmd! CmdwinLeave * :call MapCR()
 
 
+" enable streak
+let g:sneak#streak = 1
 
 

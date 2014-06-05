@@ -7,7 +7,6 @@ Bundle 'dtinth/vim-colors-dtinth256'
 
 " functionality
 Bundle 'kien/ctrlp.vim'
-Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'Lokaltog/vim-easymotion'
@@ -19,7 +18,8 @@ Bundle 'ervandew/supertab'
 Bundle 'junegunn/vim-emoji'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'mattn/emmet-vim'
-Bundle 'dhruvasagar/vim-vinegar'
+Bundle 'tpope/vim-vinegar'
+Bundle 'dtinth/vim-reveal-in-finder'
 
 " language support
 Bundle 'moll/vim-node'
