@@ -90,8 +90,10 @@ endfunction
 function! Chords#setup()
   call Chords#common()
   call Chords#ruby()
+  call Chords#javascript()
   Arpeggio nnoremap ex ZZ
   Arpeggio nnoremap qu ZQ
+  Arpeggio inoremap kuc 口
 endfunction
 
 autocmd VimEnter * call Chords#setup()
