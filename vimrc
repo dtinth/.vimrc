@@ -58,6 +58,7 @@ exe "source " . s:dirname . "/keys.vim"
 exe "source " . s:dirname . "/file_types.vim"
 exe "source " . s:dirname . "/custom_command.vim"
 exe "source " . s:dirname . "/chords.vim"
+exe "source " . s:dirname . "/airline.vim"
 " exe "source " . s:dirname . "/tab_autocomplete.vim"
 
 " files to ignore in CtrlP

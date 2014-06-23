@@ -20,6 +20,7 @@ Bundle 'editorconfig/editorconfig-vim'
 Bundle 'mattn/emmet-vim'
 Bundle 'tpope/vim-vinegar'
 Bundle 'dtinth/vim-reveal-in-finder'
+Bundle 'bling/vim-airline'
 
 " language support
 Bundle 'moll/vim-node'
