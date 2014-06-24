@@ -1,9 +1,15 @@
-This repository contains my rc script for VIM and VImperator.
+This repository contains my rc script for VIM.
 
-I add this to my real .vimrc:
 
-    source ~/vimrc/vimrc
-    source ~/vimrc/vundles.vim
+Setup
+-----
+
+```bash
+git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git clone https://github.com/dtinth/.vimrc.git ~/vimrc
+mkdir ~/.vimtmp ~/.vimbackup
+cat 'source ~/vimrc/boot.vim' >> ~/.vimrc
+```
 
 
 Repository Contents
@@ -11,9 +17,15 @@ Repository Contents
 
 <table>
     <tr>
-        <td>vimrc</td>
+        <td>boot.vim</td>
         <td>
-            My main vimrc file.
+            Convenient file for quick setup...
+        </td>
+    </tr>
+    <tr>
+        <td>main.vim</td>
+        <td>
+            My main .vimrc file.
             Includes the other files (except vundles.vim).
             Contains the settings that don't deserve its own file.
         </td>
