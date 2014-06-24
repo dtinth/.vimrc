@@ -5,10 +5,25 @@ Setup
 -----
 
 ```bash
+# install vundle and clone the repository
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 git clone https://github.com/dtinth/.vimrc.git ~/vimrc
+
+# install plugins
+vim +'set nocompatible' \
+    +'filetype off' \
+    +'set rtp+=~/.vim/bundle/Vundle.vim' \
+    +'call vundle#begin()' \
+    +'source ~/vimrc/vundles.vim' \
+    +'call vundle#end()' \
+    +'PluginInstall' \
+    +'qall'
+
+# create required directories
 mkdir ~/.vimtmp ~/.vimbackup
-cat 'source ~/vimrc/boot.vim' >> ~/.vimrc
+
+# install!
+echo 'source ~/vimrc/boot.vim' >> ~/.vimrc
 ```
 
 
