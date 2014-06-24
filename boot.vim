@@ -6,7 +6,6 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 exe "source " . s:dirname . "/vundles.vim"
-source ~/Projects/vimrc/vundles.vim
 call vundle#end()
 
 exe "source " . s:dirname . "/main.vim"
