@@ -9,6 +9,10 @@ imap <c-s> <esc>:up<cr>
 " easymotion
 map <leader>a <leader><leader>F
 map <leader>o <leader><leader>f
+map <leader>y <leader><leader>w
+map <leader>; <leader><leader>e
+map <leader>w <leader><leader>ge
+map <leader>q <leader><leader>b
 
 " custom commands
 map <leader>r :call custom_command#run()<cr>
