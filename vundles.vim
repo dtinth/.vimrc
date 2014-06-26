@@ -1,6 +1,6 @@
 
 " let Vundle manage Vundle
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 " THE BEST COLOR SCHEME
 Plugin 'dtinth/vim-colors-dtinth256'
@@ -10,7 +10,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'justincampbell/vim-eighties'
+Plugin 'zhaocai/GoldenView.Vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
