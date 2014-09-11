@@ -14,6 +14,12 @@ map <leader>; <leader><leader>e
 map <leader>w <leader><leader>ge
 map <leader>q <leader><leader>b
 
+" pane swapping
+map ˙ <c-w>h
+map ∆ <c-w>j
+map ˚ <c-w>k
+map ¬ <c-w>l
+
 " custom commands
 map <leader>r :call custom_command#run()<cr>
 map <leader>S :call custom_command#set()<cr>!
@@ -24,6 +30,10 @@ imap <esc>r <c-o><leader>r
 " map <leader>S :call custom_command#set()<cr>
 map <leader>n :call custom_command#set()<cr>!node %
 map <leader>b :call custom_command#set()<cr>!ruby %
+
+" scrolling
+nnoremap <c-u> 12k
+nnoremap <c-d> 12j
 
 " reveal in finder
 map <leader>e :Reveal<cr>

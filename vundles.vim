@@ -21,6 +21,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-vinegar'
 Plugin 'dtinth/vim-reveal-in-finder'
 Plugin 'bling/vim-airline'
+Plugin 'rking/ag.vim'
 
 " language support
 Plugin 'moll/vim-node'
@@ -38,6 +39,9 @@ Plugin 'groenewege/vim-less'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'xsbeats/vim-blade'
 Plugin 'marijnh/tern_for_vim'
+Plugin 'othree/html5.vim'
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
 
 " text objects
 Plugin 'kana/vim-textobj-user'
