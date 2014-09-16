@@ -78,7 +78,7 @@ let g:EclimJavascriptLintEnabled=0
 let g:EclimJavascriptValidate=0
 let g:syntastic_mode_map = { "mode": "active",
                            \ "active_filetypes": [],
-                           \ "passive_filetypes": ["ruby", "html"] }
+                           \ "passive_filetypes": ["ruby", "html", "scss"] }
 let g:pandoc#modules#disabled = ["folding"]
 let g:vim_markdown_folding_disabled=1
 
