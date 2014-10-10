@@ -42,6 +42,8 @@ Plugin 'marijnh/tern_for_vim'
 Plugin 'othree/html5.vim'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'slim-template/vim-slim.git'
+Plugin 'toyamarinyon/vim-swift'
 
 " text objects
 Plugin 'kana/vim-textobj-user'
