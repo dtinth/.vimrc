@@ -16,4 +16,9 @@ augroup dtinth
   " Java: use tabs
   AutoType java Tab
 
+  " Custom Run Scripts
+  AutoType ruby let b:default_run_command='!ruby %'
+  AutoType javascript let b:default_run_command='!node %'
+  AutoType coffee let b:default_run_command='!coffee %'
+
 augroup END

@@ -65,6 +65,7 @@ exe "source " . s:dirname . "/airline.vim"
 set wildignore+=*.o,*.obj,.git
 set wildignore+=node_modules
 set wildignore+=tmp/cache
+let g:ctrlp_working_path_mode = '0'
 
 " restore cursor positions ( taken from ubuntu's vimrc )
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -81,4 +82,5 @@ let g:syntastic_mode_map = { "mode": "active",
                            \ "passive_filetypes": ["ruby", "html", "scss"] }
 let g:pandoc#modules#disabled = ["folding"]
 let g:vim_markdown_folding_disabled=1
+let g:goldenview__enable_default_mapping = 0
 
